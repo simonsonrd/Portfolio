@@ -50,10 +50,23 @@
 
         <div class="card-grid">
           <article class="card">
-            <img src="assets/images/placeholder.svg" alt="GitHub Actions workflow log screenshot" width="640" height="360" loading="lazy" />
             <div class="card-body">
-              <h2>GitHub Actions Demo</h2>
-              <p>A CI workflow that automatically runs on every push: checks out the repository, lists its files, and reports the job status — demonstrating GitHub Actions fundamentals.</p>
+              <h2>Actions Demo</h2>
+              <p>A CI workflow (<code>github-actions-demo.yml</code>) that runs automatically on every push to the repository.</p>
+              <pre class="code-block"><code>name: GitHub Actions Demo
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Triggered by ${{ github.event_name }}"
+      - run: echo "Running on ${{ runner.os }}"
+      - run: echo "Branch: ${{ github.ref }}"
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: List files in the repository
+        run: ls ${{ github.workspace }}
+      - run: echo "Job status: ${{ job.status }}"</code></pre>
               <ul class="tags small"><li>GitHub Actions</li><li>YAML</li><li>CI/CD</li></ul>
               <div class="card-links">
                 <a href="https://github.com/simonsonrd/Portfolio/actions" target="_blank" rel="noopener" aria-label="View GitHub Actions workflow runs">Actions Log</a>
